@@ -11,7 +11,7 @@
     margin:3px auto;
 }    
 </style>
-<div class="movies">
+<div class="movies" style="height:450px;overflow:auto;">
     <?php 
     $movies=$Movie->all(" order by rank");
     foreach($movies as $idx => $movie):
@@ -30,7 +30,9 @@
                 <div>上映時間:<?= $movie['ondate'] ?></div>
             </div>
             <div style="text-align:right;padding:5px;">
-                <button data-id="<?= $movie['id'] ?>">顯示</button>
+                <button class="show" data-id="<?= $movie['id'] ?>">
+                    <?= ($movie['sh']==1)?"顯示":"隱藏" ?>
+                </button>
                 <?php 
                 $prev=($idx==0)?$movie['id']:$movies[$idx-1]['id'];
                 $next=($idx==count($movies)-1)?$movie['id']:$movies[$idx+1]['id'];
@@ -56,6 +58,21 @@ $(".switch-rank").on("click",function(){
     let ids=$(this).data('ids').split('-')
     $.post("./api/sw.php",{ids,'table':"Movie"},()=>{
         location.reload()
+    })
+})
+
+$(".show").on("click",function(){
+    let id=$(this).data("id")
+    $.post("./api/show.php",{id},()=>{
+        /* switch($(this).text().trim()){
+            case "顯示":
+                $(this).text("隱蔵");
+            break;
+            case "隱蔵":
+                $(this).text("顯示");
+            break;
+        } */
+        location.reload();
     })
 })
 </script>
