@@ -21,9 +21,12 @@
             
         </div>
         <div style="width:25%">
-            <!-- <input type="button" value="往上">
-            <input type="button" value="往下"> -->
-            <input type="number" name="rank[]" value="<?= $poster['rank']; ?>" style="width:50px;">
+            <?php 
+                $prev=($idx==0)?$poster['id']:$posters[$idx-1]['id'];
+                $next=($idx==count($posters)-1)?$poster['id']:$posters[$idx+1]['id'];
+            ?>
+            <input type="button" value="往上" data="<?= $poster['id']."-".$prev ?>">
+            <input type="button" value="往下" data="<?= $poster['id']."-".$next ?>">
         </div>
         <div style="width:25%">
             <input type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh']==1)?'checked':""; ?>>顯示
