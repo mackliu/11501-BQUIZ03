@@ -56,7 +56,7 @@
                     </tr>
                     <tr>
                         <td>導演:</td>
-                        <td><input type="text" name="dirctor" id="director"></td>
+                        <td><input type="text" name="director" id="director"></td>
                     </tr>
                     <tr>
                         <td>預告影片</td>
