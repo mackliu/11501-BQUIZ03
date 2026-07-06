@@ -33,21 +33,21 @@
                                 <option value="2026">2026</option>
                                 <option value="2027">2027</option>
                                 <option value="2028">2028</option>
-                            </select>
+                            </select>年
                             <select name="month" id="month">
                                 <?php 
                                 for($i=1;$i<=12;$i++){
                                   echo "<option value='$i'>$i</option>";
                                 }
                                 ?>
-                            </select>
+                            </select>月
                             <select name="date" id="date">
                                 <?php 
                                 for($i=1;$i<=31;$i++){
                                   echo "<option value='$i'>$i</option>";
                                 }
                                 ?>
-                            </select>
+                            </select>日
                         </td>
                     </tr>
                     <tr>
