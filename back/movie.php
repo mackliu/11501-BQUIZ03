@@ -41,7 +41,7 @@
             <input class="switch-rank" type="button" value="往下" data-ids="<?= $movie['id']."-".$next ?>">
                 
                 <button onclick="location.href='?do=edit_movie&id=<?= $movie['id'] ?>'">編輯電影</button>
-                <button data-id="<?= $movie['id'] ?>">刪除電影</button>
+                <button class="del-movie" data-id="<?= $movie['id'] ?>">刪除電影</button>
             </div>
             <div>
                 劇情介紹:<?= $movie['intro'] ?>
@@ -72,6 +72,13 @@ $(".show").on("click",function(){
                 $(this).text("顯示");
             break;
         } */
+        location.reload();
+    })
+})
+
+$(".del-movie").on("click",function(){
+    let id=$(this).data('id');
+        $.post("./api/del.php",{id,'table':'Movie'},()=>{
         location.reload();
     })
 })
