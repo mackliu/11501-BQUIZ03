@@ -21,8 +21,9 @@
             
         </div>
         <div style="width:25%">
-            <input type="button" value="往上">
-            <input type="button" value="往下">
+            <!-- <input type="button" value="往上">
+            <input type="button" value="往下"> -->
+            <input type="number" name="rank[]" value="<?= $poster['rank']; ?>" style="width:50px;">
         </div>
         <div style="width:25%">
             <input type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh']==1)?'checked':""; ?>>顯示
@@ -32,6 +33,7 @@
                 <option value="2">滑入滑出</option>
                 <option value="3">縮放</option>
             </select>
+            <input type="hidden" name="id[]" value="<?= $poster['id'] ?>">
         </div>
     </div>
     <?php  endforeach;  ?>
