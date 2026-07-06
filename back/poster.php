@@ -8,13 +8,33 @@
 </div>
 <form action="./api/edit_poster.php" method="post">
 <div style="height:270px;overflow: auto;">
-    <div style="background:white;margin:3px 0;height:100px;display:flex;justify-content:space-between" >
-        <div style="width:25%">1</div>
-        <div style="width:25%">2</div>
-        <div style="width:25%">3</div>
-        <div style="width:25%">4</div>
+    <?php 
+    $posters=$Poster->all(" ORDER BY rank");
+    foreach($posters as $idx => $poster):
+    ?>
+    <div style="background:white;margin:3px 0;height:100px;display:flex;align-items:center;justify-content:space-between;color:black;padding:3px;text-align:center" >
+        <div style="width:25%">
+            <img src="./upload/<?= $poster['img'] ?>" style="width:60px;height:80px;">
+        </div>
+        <div style="width:25%">
+            <input type="text" name="name[]" value="<?= $poster['name'] ?>">
+            
+        </div>
+        <div style="width:25%">
+            <input type="button" value="往上">
+            <input type="button" value="往下">
+        </div>
+        <div style="width:25%">
+            <input type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh']==1)?'checked':""; ?>>顯示
+            <input type="checkbox" name="del[]" value="<?= $poster['id']; ?>">刪除
+            <select name="ani[]">
+                <option value="1">淡入淡出</option>
+                <option value="2">滑入滑出</option>
+                <option value="3">縮放</option>
+            </select>
+        </div>
     </div>
-
+    <?php  endforeach;  ?>
 </div>
 <div class="ct">
     <input type="submit" value="編輯確定">
