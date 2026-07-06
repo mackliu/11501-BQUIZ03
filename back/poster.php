@@ -50,7 +50,7 @@
 <script>
 $(".switch-rank").on("click",function(){
     let ids=$(this).data('ids').split('-')
-    $.post("./api/sw.php",{ids},()=>{
+    $.post("./api/sw.php",{ids,"table":"Poster"},()=>{
         location.reload()
     })
 })
