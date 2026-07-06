@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>影城</title>
 <link rel="stylesheet" href="css/css.css">
-<script src="scripts/jquery-1.9.1.min.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
 </head>
 
 <body>
