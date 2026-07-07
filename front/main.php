@@ -145,7 +145,7 @@
       let total=$(".poster").length
       $(".left-btn,.right-btn").on("click",function(){
             let direction=$(this).attr('class').split("-")[0]
-            console.log(direction)
+            //console.log(direction)
 
             switch(direction){
               case "left":
