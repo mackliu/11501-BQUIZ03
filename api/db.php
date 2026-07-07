@@ -87,7 +87,7 @@ class DB{
         }else{
             $sql .= " WHERE `id`='$arg'";
         }
-        
+        //echo $sql;
         return $this->pdo->exec($sql);
 
     }

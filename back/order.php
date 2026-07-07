@@ -1,11 +1,20 @@
 <h3 class="ct">訂單清單</h3>
 <div>
     快速刪除:
-    <input type="radio" name="type" id="date">依日期
-    <input type="text" name="date" id="">
+    <input type="radio" name="type" id="day" checked>依日期
+    <input type="text" name="day" id="">
     <input type="radio" name="type" id="movie">依電影
-    <select name="movie" id=""></select>
-    <input type="submit" value="刪除">
+    <select name="movie" id="">
+        <?php 
+            $movies=$Order->q("SELECT `movie` FROM `orders` group by `movie`");
+            foreach($movies as $movie){
+                echo "<option value='{$movie['movie']}'>";
+                echo $movie['movie'];
+                echo "</option>";
+            }
+        ?>
+    </select>
+    <button onclick="qDel()">刪除</button>
 </div>
 
 <div style="display:flex;text-align:center;justify-content:space-between;align-items:center">
@@ -51,6 +60,28 @@ function del(id){
     let chk=confirm('你確定要刪除這筆訂單資料嗎?');
     if(chk){
         $.post("./api/del.php",{id,'table':'Order'},()=>{
+            location.reload();
+        })
+    }
+
+}
+
+function qDel(){
+    let type=$("input[type='radio']:checked").attr('id');
+    let value;
+    switch(type){
+        case 'day':
+            value=$(`input[name='${type}']`).val();
+        break;
+        case 'movie':
+            value=$(`select[name='${type}']`).val();
+        break;
+    }
+    //console.log(type,value);
+    let chk=confirm('你確定要刪除'+value+"的全部訂單嗎?")
+    if(chk){
+        $.post("./api/qdel.php",{type,value},(res)=>{
+            //console.log(res)
             location.reload();
         })
     }
