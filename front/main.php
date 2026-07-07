@@ -29,7 +29,7 @@
           .controls{
             width:420px;
             height:120px;
-            background:green;
+           /*  background:green; */
             margin:5px auto;
             display:flex;
             justify-content: space-evenly;
@@ -49,9 +49,25 @@
             border-right:0px solid white;
           }
           .btns{
+            display:flex;
             width:280px;
             height:120px;
-            background:yellow;
+            /* background:yellow; */
+            font-size:12px;
+            overflow: hidden;
+            position:relative;
+          }
+          .btn{
+            width:70px;
+            height:120px;
+            box-sizing: border-box;
+            padding:5px;
+            flex-shrink: 0;
+            position:relative;
+          }
+          .btn img{
+            width:100%;
+
           }
         </style>
       <div class="rb tab" style="width:95%;">
@@ -71,7 +87,16 @@
           <!--按鈕區-->
           <div class="controls">
             <div class='left-btn'></div>
-            <div class='btns'></div>
+            <div class='btns'>
+              <?php 
+              foreach($posters as $idx => $poster):
+              ?>
+              <div class="btn">
+                <img src="upload/<?= $poster['img'] ?>" data-ani="<?= $poster['ani'] ?>">
+                <div><?= $poster['name'] ?></div>
+              </div>
+              <?php endforeach;   ?>
+            </div>
             <div class='right-btn'></div>
           </div>
         </div>
