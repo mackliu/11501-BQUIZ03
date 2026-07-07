@@ -7,10 +7,24 @@
       -->
         <style>
           .lists{
-            width:210px;
+            width:180px;
             height:230px;
             background:white;
             margin:auto;
+            overflow: hidden;
+            position:relative;
+          }
+          .poster{
+            text-align: center;
+            color:black;
+            font-size:14px;
+            position:absolute;
+            display:none;
+          }
+          .poster img{
+              width:180px;
+              height:210px;
+
           }
           .controls{
             width:420px;
@@ -44,7 +58,15 @@
         <div>
           <!--海報區-->
           <div class="lists">
-            <div class="poster"></div>
+            <?php 
+            $posters=$Poster->all(['sh'=>1]," Order by `rank`");
+            foreach($posters as $idx => $poster):
+            ?>
+            <div class="poster" data-ani="<?= $poster['ani'] ?>">
+              <img src="upload/<?= $poster['img'] ?>" alt="">
+              <div><?= $poster['name'] ?></div>
+            </div>
+            <?php endforeach;?>
           </div>
           <!--按鈕區-->
           <div class="controls">
@@ -55,6 +77,12 @@
         </div>
       </div>
     </div>
+    <script>
+      $(".poster").eq(0).show();
+    </script>
+
+
+
     <style>
       .movie {
     box-sizing: border-box;
