@@ -45,7 +45,7 @@
 
           ?>
           <div class="movie">
-            <div>
+            <div onclick="location.href='?do=intro&id=<?=$row['id'];?>'" style="cursor: pointer;">
               <img src="./upload/<?= $row['poster'] ?>" style="width:60px;height:80px">
             </div>
             <div>
@@ -59,15 +59,45 @@
 
             </div>
             <div>
-              <button>劇情介紹</button>
-              <button>線上訂票</button>
+              <button onclick="location.href='?do=intro&id=<?=$row['id'];?>'">劇情簡介</button>
+              <button onclick="location.href='?do=booking&id=<?= $row['id']; ?>'">線上訂票</button>
             </div>
           </div>
           <?php 
           endforeach;
           ?>
         </div>
-        <div class="ct"> </div>
+        <style>
+          a{
+            color:white;
+            text-decoration: none;
+          }
+          a:hover{
+            text-decoration: underline;
+          }
+          a:visited{
+            color:white;
+          }
+        </style>
+        <div class="ct">
+          <?php
+            if($now-1 >0){
+              $prev=$now-1;
+              echo "<a href='index.php?p=$prev'> < </a>";
+            }
+
+            for($i=1 ; $i<=$pages ;$i++){
+              $size=($now==$i)?"20px":"16px";
+              echo "<a href='index.php?p=$i' style='font-size:$size'> $i </a>";
+
+            }
+            if($now+1 <= $pages){
+              $next=$now+1;
+              echo "<a href='index.php?p=$next'> > </a>";
+            }
+          
+          ?>
+          </div>
       </div>
     </div>
 
