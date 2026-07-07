@@ -116,7 +116,7 @@
           next=$(".poster").eq(0)
         }
         let ani=$(now).data('ani');
-        console.log(ani)
+        //console.log(ani)
         switch(ani){
           case 1:
             //淡入淡出
@@ -140,6 +140,29 @@
         }
         
       }
+
+      let p=0;
+      let total=$(".poster").length
+      $(".left-btn,.right-btn").on("click",function(){
+            let direction=$(this).attr('class').split("-")[0]
+            console.log(direction)
+
+            switch(direction){
+              case "left":
+                if(p-1 >= 0){
+                  p--
+                }
+
+              break;
+              case 'right':
+                if(p+1<=total-4){
+                  p++
+                }
+              break;
+            }
+            $(".btn").animate({right:70*p})
+      })
+
     </script>
 
 
