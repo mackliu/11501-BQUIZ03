@@ -104,16 +104,42 @@
     </div>
     <script>
       $(".poster").eq(0).show();
-      let now=0;
-      let autoSlide=setInterval(() => {
-        $(".poster").eq(now).hide();
-        now++
-        if(now>=$(".poster").length){
-          now=0
-        }
-        $(".poster").eq(now).show();
-      }, 2000);
+      
+      let autoSlide=setInterval("slider()", 3000);
 
+      function slider(){
+        let now=$(".poster:visible")
+        let next
+        if($(now).index()+1<$(".poster").length){
+          next=$(".poster").eq($(now).index()+1)
+        }else{
+          next=$(".poster").eq(0)
+        }
+        let ani=$(now).data('ani');
+        console.log(ani)
+        switch(ani){
+          case 1:
+            //淡入淡出
+            $(now).fadeOut(1000,()=>{
+                $(next).fadeIn(1000)
+            })
+          break;
+          case 2:
+            //滑入滑出
+            $(now).slideUp(1000,()=>{
+              $(next).slideDown(1000)
+            })
+          break;
+          case 3:
+            //縮放
+            $(now).hide(1000,()=>{
+              $(next).show(2000)
+            })
+
+          break;
+        }
+        
+      }
     </script>
 
 
