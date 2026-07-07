@@ -1,11 +1,57 @@
     <div class="half" style="vertical-align:top;">
       <h1>預告片介紹</h1>
+      <!--
+        海報:210x230
+        下方按鈕區:420 x 130
+
+      -->
+        <style>
+          .lists{
+            width:210px;
+            height:230px;
+            background:white;
+            margin:auto;
+          }
+          .controls{
+            width:420px;
+            height:120px;
+            background:green;
+            margin:5px auto;
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+          }
+          .left-btn,.right-btn{
+            width:0;
+            border-top:20px solid transparent;
+            border-bottom:20px solid transparent;
+          }
+          .left-btn{
+            border-left:0px solid white;
+            border-right:30px solid white;
+          }
+          .right-btn{
+            border-left:30px solid white;
+            border-right:0px solid white;
+          }
+          .btns{
+            width:280px;
+            height:120px;
+            background:yellow;
+          }
+        </style>
       <div class="rb tab" style="width:95%;">
-        <div id="abgne-block-20111227">
-          <ul class="lists">
-          </ul>
-          <ul class="controls">
-          </ul>
+        <div>
+          <!--海報區-->
+          <div class="lists">
+            <div class="poster"></div>
+          </div>
+          <!--按鈕區-->
+          <div class="controls">
+            <div class='left-btn'></div>
+            <div class='btns'></div>
+            <div class='right-btn'></div>
+          </div>
         </div>
       </div>
     </div>
