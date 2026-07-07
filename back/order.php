@@ -38,7 +38,7 @@ foreach($orders as $order):
               ?>
         </div>
         <div style="width:14%">
-            <button onclick="del(<?= $order['id'] ?>">刪除</button>
+            <button onclick="del(<?= $order['id'] ?>)">刪除</button>
         </div>
     </div>
     <hr>
@@ -46,3 +46,13 @@ foreach($orders as $order):
 endforeach;
 ?>    
 </div>
+<script>
+function del(id){
+    let chk=confirm('你確定要刪除這筆訂單資料嗎?');
+    if(chk){
+        $.post("./api/del.php",{id,'table':'Order'},()=>{
+            location.reload();
+        })
+    }
+}
+</script>
