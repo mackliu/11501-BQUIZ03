@@ -9,7 +9,24 @@
         </div>
       </div>
     </div>
+    <style>
+      .movie {
+    box-sizing: border-box;
+    margin: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 48%;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 3px;
+    font-size:14px;
+  }
 
+    .movies {
+      display: flex;
+      flex-wrap: wrap;
+  }
+    </style>
     <div class="half">
       <h1>院線片清單</h1>
       <div class="rb tab" style="width:95%;">
@@ -27,7 +44,25 @@
           foreach($rows as $row):
 
           ?>
-          <div class="movie"><?= $row['name'] ?></div>
+          <div class="movie">
+            <div>
+              <img src="./upload/<?= $row['poster'] ?>" style="width:60px;height:80px">
+            </div>
+            <div>
+              <div style="font-size:16px"><?= $row['name'] ?></div>
+              <div>
+                分級: <img src="./icon/03C0<?= $row['level'] ?>.png" style="width:18px;"> <?= $levelStr[$row['level']]; ?>
+              </div>
+              <div>上映日期:<?= $row['ondate'] ?></div>
+              
+              
+
+            </div>
+            <div>
+              <button>劇情介紹</button>
+              <button>線上訂票</button>
+            </div>
+          </div>
           <?php 
           endforeach;
           ?>
