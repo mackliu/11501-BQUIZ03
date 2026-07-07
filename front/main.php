@@ -104,6 +104,16 @@
     </div>
     <script>
       $(".poster").eq(0).show();
+      let now=0;
+      let autoSlide=setInterval(() => {
+        $(".poster").eq(now).hide();
+        now++
+        if(now>=$(".poster").length){
+          now=0
+        }
+        $(".poster").eq(now).show();
+      }, 2000);
+
     </script>
 
 
