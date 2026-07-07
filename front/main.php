@@ -9,14 +9,39 @@
         </div>
       </div>
     </div>
+
     <div class="half">
       <h1>院線片清單</h1>
       <div class="rb tab" style="width:95%;">
-        <table>
-          <tbody>
-            <tr> </tr>
-          </tbody>
-        </table>
+        <div class="movies">
+          <?php
+          $today=date("Y-m-d");
+          $ondate=date("Y-m-d",strtotime("-2 days"));
+          
+          $total=$Movie->count(" WHERE `ondate` between '$ondate' AND '$today' AND `sh`=1");
+          $div=4;
+          $pages=ceil($total/$div);
+          $now=$_GET['p']??1;
+          $start=($now-1)*$div;
+          $rows=$Movie->all(['sh'=>1]," AND `ondate` between '$ondate' AND '$today' Order by rank limit $start,$div");
+          foreach($rows as $row):
+
+          ?>
+          <div class="movie"><?= $row['name'] ?></div>
+          <?php 
+          endforeach;
+          ?>
+        </div>
         <div class="ct"> </div>
       </div>
     </div>
+
+    <!-- 今天7/7
+    2026/07/05  2026/07/06  2026/07/07
+    2026/07/06  2026/07/07  2026/07/08
+    2026/07/07  2026/07/08  2026/07/09
+
+    1. sh=1
+    2. ondate=today-2 || ondate=today-1 || ondate=today
+    => ondate >= today-2 && ondate <=today
+    => ondate between today-2 , today -->
