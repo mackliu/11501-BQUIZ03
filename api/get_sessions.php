@@ -21,16 +21,41 @@ $sess=[
    e. 2001以後 ==> 1場(22:00~22:00)
 */
 $today=date("Y-m-d");
+$hour=date("G");
 
-if($date==$today){
-    $start=1;
+if($date==$today && $hour>14){
+    $start=ceil(($hour-13)/2)+1;
+/*     switch($hour){
+        case "14":
+        case "15":
+            $start=2;
+        break;
+        case "16":
+        case "17":
+            $start=3;
+        break;
+        case "18":
+        case "19":
+            $start=4;
+        break;
+        case "20":
+        case "21":
+            $start=5;
+        break;
+        default:
+            $start=0;
+    } */
 }else{
     $start=1;
 }
 
-for($i=$start;$i<=5;$i++){
-    echo "<option value=''>";
-    echo $sess[$i];
-    echo " 剩餘座位 20";
-    echo "</option>";
+if($start!=0 || $start >5 ){
+    for($i=$start;$i<=5;$i++){
+        echo "<option value=''>";
+        echo $sess[$i];
+        echo " 剩餘座位 20";
+        echo "</option>";
+    }
+}else{
+    echo "<option>本日已無可訂場次</option>";
 }
