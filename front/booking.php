@@ -21,6 +21,7 @@
 
 
 <h3 class="ct">線上訂票</h3>
+<div id="BookingForm">
 <table class="booking-form">
     <tr>
         <td style="width:60px;">電影:</td>
@@ -42,10 +43,15 @@
     </tr>
 </table>
 <div class="ct">
-    <button class='btn-submit'>確定</button>
-    <button class='btn-reset'>重置</button>
+    <button class='btn-submit' onclick="booking()">確定</button>
+    <button class='btn-reset' onclick="getMovies()">重置</button>
 </div>
 
+</div>
+
+<div id="Seats" style="display:none">
+    <button onclick="showForm()">上一步</button>
+</div>
 <script>
 
 getMovies();
@@ -85,4 +91,13 @@ function getSessions(movie,date){
     })
 }
 
+function booking(){
+    $("#BookingForm").hide();
+    $("#Seats").show();
+}
+
+function showForm(){
+    $("#BookingForm").show();
+    $("#Seats").hide();
+}
 </script>
