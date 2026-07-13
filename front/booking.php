@@ -55,6 +55,12 @@ $("#movie").on("change",function(){
     getDays(id);
 })
 
+$("#date").on("change"),function(){
+    let movie=$("#movie").val();
+    let date=$("#date").val();
+    getSessions(movie,date);
+}
+
 function getMovies(){
     $.get("./api/get_movies.php",(movies)=>{
         $("#movie").html(movies)
@@ -66,7 +72,16 @@ function getMovies(){
 function getDays(movie){
     $.get("./api/get_days.php",{movie},(days)=>{
         $("#date").html(days)
+        let date=$("#date").val();
+        getSessions(movie,date);
     })
 
 }
+
+function getSessions(movie,date){
+    $.get("./api/get_sessions.php",{movie,date},(sessions)=>{
+        $("#session").html(sessions);
+    })
+}
+
 </script>
