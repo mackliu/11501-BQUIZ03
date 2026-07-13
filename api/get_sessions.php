@@ -51,7 +51,7 @@ if($date==$today && $hour>14){
 echo $start;
 if($start!=0 &&  $start < 5){
     for($i=$start;$i<=5;$i++){
-        echo "<option value=''>";
+        echo "<option value='{$sess[$i]}'>";
         echo $sess[$i];
         echo " 剩餘座位 20";
         echo "</option>";

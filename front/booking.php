@@ -37,13 +37,21 @@
 .seat{
     width:64px;
     height:85px;
-    background:#ccc;
-    opacity:0.7;
+    text-align: center;
+    position:relative;  
+}
+.seat input{
+    position:absolute;
+    right:5px;
+    bottom:5px;
+}
+.none{
+    background:url("./icon/03D02.png") no-repeat center;
+}
+.booked{
+    background:url("./icon/03D03.png") no-repeat center;
+}
 
-}
-.seat:nth-child(odd){
-    background:green;
-}
 </style>
 
 
@@ -77,39 +85,7 @@
 </div>
 
 <div id="Seats" style='display:none'>
-    <div class="seats-block">
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-        <div class='seat'>0排0號</div>
-    </div>
 
-    <div class='movie-info'>
-
-    <div>您選擇的電影是:<span class='seats-movie'></span></div>
-    <div>您選擇的時刻是:<span class='seats-date'></span><span class='seats-session'></span></div>
-    <div>您已經勾選兩張票，最多可以購買<span class='tickets'></span></div>
-    <div class="ct">
-        <button onclick="showForm()">上一步</button>
-        <button>訂購</button>
-    </div>
-    </div>
 </div>
 <script>
 let movieId=(new URLSearchParams(location.search)).get('id');
@@ -156,7 +132,17 @@ function getSessions(movie,date){
 
 function booking(){
     $("#BookingForm").hide();
+    $.get("./api/get_seats.php",(seats)=>{
+        $("#Seats").html(seats)
+        $(".seats-movie").text($("#movie option:selected").text());
+        $(".seats-date").text($("#date").val());
+        $(".seats-session").text($("#session").val());
+
+
+
+    })
     $("#Seats").show();
+
 }
 
 function showForm(){
