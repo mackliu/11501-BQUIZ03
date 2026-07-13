@@ -53,7 +53,8 @@
     <button onclick="showForm()">上一步</button>
 </div>
 <script>
-
+let movieId=(new URLSearchParams(location.search)).get('id');
+//console.log(movieId);
 getMovies();
 
 $("#movie").on("change",function(){
@@ -70,6 +71,9 @@ $("#date").on("change",function(){
 function getMovies(){
     $.get("./api/get_movies.php",(movies)=>{
         $("#movie").html(movies)
+        if(movieId!=null){
+            $(`#movie option[value="${movieId}"]`).prop('selected',true)
+        }
         let id=$("#movie").val()
         getDays(id)
     })
@@ -85,7 +89,7 @@ function getDays(movie){
 }
 
 function getSessions(movie,date){
-    console.log(movie,date)
+   // console.log(movie,date)
     $.get("./api/get_sessions.php",{movie,date},(sessions)=>{
         $("#session").html(sessions);
     })
