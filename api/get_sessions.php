@@ -48,8 +48,8 @@ if($date==$today && $hour>14){
 }else{
     $start=1;
 }
-
-if($start!=0 || $start < 5 ){
+echo $start;
+if($start!=0 &&  $start < 5){
     for($i=$start;$i<=5;$i++){
         echo "<option value=''>";
         echo $sess[$i];
