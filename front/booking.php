@@ -45,3 +45,14 @@
     <button class='btn-submit'>確定</button>
     <button class='btn-reset'>重置</button>
 </div>
+
+<script>
+
+getMovies();
+
+function getMovies(){
+    $.get("./api/get_movies.php",(movies)=>{
+        $("#movie").html(movies)
+    })
+}    
+</script>
