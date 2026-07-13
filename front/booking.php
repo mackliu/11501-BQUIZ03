@@ -50,9 +50,23 @@
 
 getMovies();
 
+$("#movie").on("change",function(){
+    let id=$(this).val(); //取得當前電影選單的電影id
+    getDays(id);
+})
+
 function getMovies(){
     $.get("./api/get_movies.php",(movies)=>{
         $("#movie").html(movies)
+        let id=$("#movie").val()
+        getDays(id)
     })
-}    
+}
+
+function getDays(movie){
+    $.get("./api/get_days.php",{movie},(days)=>{
+        $("#date").html(days)
+    })
+
+}
 </script>
