@@ -17,6 +17,33 @@
 .booking-form td select{
     width:98%;
 }
+.seats-block {
+    width: 540px;
+    height: 358px;
+    margin: auto;
+    background: url("./icon/03D04.png");
+    box-sizing: border-box;
+    padding: 18px 110px 0 110px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.movie-info {
+    width: 540px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 10px 100px;
+    background: #ddd;
+}
+.seat{
+    width:64px;
+    height:85px;
+    background:#ccc;
+    opacity:0.7;
+
+}
+.seat:nth-child(odd){
+    background:green;
+}
 </style>
 
 
@@ -49,8 +76,40 @@
 
 </div>
 
-<div id="Seats" style="display:none">
-    <button onclick="showForm()">上一步</button>
+<div id="Seats" style='display:none'>
+    <div class="seats-block">
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+        <div class='seat'>0排0號</div>
+    </div>
+
+    <div class='movie-info'>
+
+    <div>您選擇的電影是:<span class='seats-movie'></span></div>
+    <div>您選擇的時刻是:<span class='seats-date'></span><span class='seats-session'></span></div>
+    <div>您已經勾選兩張票，最多可以購買<span class='tickets'></span></div>
+    <div class="ct">
+        <button onclick="showForm()">上一步</button>
+        <button>訂購</button>
+    </div>
+    </div>
 </div>
 <script>
 let movieId=(new URLSearchParams(location.search)).get('id');
