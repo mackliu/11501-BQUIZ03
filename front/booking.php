@@ -137,9 +137,6 @@ function booking(){
         $(".seats-movie").text($("#movie option:selected").text());
         $(".seats-date").text($("#date").val());
         $(".seats-session").text($("#session").val());
-
-
-
     })
     $("#Seats").show();
 
