@@ -104,17 +104,22 @@
     </div>
     <script>
       $(".poster").eq(0).show();
-      
+
       let autoSlide=setInterval("slider()", 3000);
 
-      function slider(){
+      function slider(index=undefined){
         let now=$(".poster:visible")
         let next
-        if($(now).index()+1<$(".poster").length){
-          next=$(".poster").eq($(now).index()+1)
+        if(index==undefined){
+          if($(now).index()+1<$(".poster").length){
+            next=$(".poster").eq($(now).index()+1)
+          }else{
+            next=$(".poster").eq(0)
+          }
         }else{
-          next=$(".poster").eq(0)
+          next=$(".poster").eq(index)
         }
+
         let ani=$(now).data('ani');
         //console.log(ani)
         switch(ani){
@@ -141,6 +146,13 @@
         
       }
 
+
+      $(".btn").on("click",function(){
+        let index=$(this).index();
+        //console.log(index)
+        slider(index);
+      })
+      
       let p=0;
       let total=$(".poster").length
       $(".left-btn,.right-btn").on("click",function(){
@@ -162,6 +174,16 @@
             }
             $(".btn").animate({right:70*p})
       })
+
+      //當進入按鈕區時,停止輪播，離開後繼續輪播
+      $(".btns").hover(
+        function(){
+          clearInterval(autoSlide);
+        },
+        function(){
+          autoSlide=setInterval("slider()", 3000);
+        }
+      )
 
     </script>
 
