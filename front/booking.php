@@ -131,12 +131,17 @@ function getSessions(movie,date){
 }
 
 function booking(){
+    let data={
+        'movie':$("#movie option:selected").text(),
+        'day':$("#date").val(),
+        'session':$("#session").val()
+    }
     $("#BookingForm").hide();
-    $.get("./api/get_seats.php",(seats)=>{
+    $.get("./api/get_seats.php",data,(seats)=>{
         $("#Seats").html(seats)
-        $(".seats-movie").text($("#movie option:selected").text());
-        $(".seats-date").text($("#date").val());
-        $(".seats-session").text($("#session").val());
+        $(".seats-movie").text(data.movie);
+        $(".seats-date").text(data.day);
+        $(".seats-session").text(data.session);
     })
     $("#Seats").show();
 

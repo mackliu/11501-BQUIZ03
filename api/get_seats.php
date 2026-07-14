@@ -1,11 +1,25 @@
-    <div class="seats-block">
+<?php include_once "db.php";
+$orders=$Order->all($_GET);
+//dd($orders);
+$seats=[];
+foreach($orders as $order){
+    $tmp=unserialize($order['seats']);
+    $seats=array_merge($seats,$tmp);
+}
+//dd($seats);
+?>
+
+
+<div class="seats-block">
         <?php
         for($i=0;$i<20;$i++):
+            $c=in_array($i,$seats)?'booked':'none';
         ?>
-            <div class='seat none'>
+            <div class='seat <?= $c; ?>'>
                 <?=floor($i/5)+1;?>排<?= ($i%5)+1; ?>號
-
-                <input type="checkbox" class='chk' name="num" value="<?= $i; ?>">
+                <?php if(!in_array($i,$seats)):?>
+                 <input type="checkbox" class='chk' name="num" value="<?= $i; ?>">
+                <?php endif;?>
             </div>
         <?php endfor;?>
 
