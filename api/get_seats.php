@@ -18,7 +18,7 @@
     <div>您已經勾選<span class='tickets'></span>張票，最多可以購買四張票</div>
     <div class="ct">
         <button onclick="showForm()">上一步</button>
-        <button>訂購</button>
+        <button onclick="checkout()">訂購</button>
     </div>
     </div>
 
@@ -49,4 +49,19 @@ $(".chk").on("click",function(){
     $(".tickets").text(seats.length);
     //console.log(seats)
 })
+
+function checkout(){
+    let data={
+        
+        'movie':$("#movie option:selected").text(),
+        'day':$("#date").val(),
+        'session':$("#session").val(),
+        'qt':seats.length,
+        'seats':seats
+    }
+
+    $.post("./api/checkout.php",data,(res)=>{
+            console.log(res);
+    })
+}
 </script>
