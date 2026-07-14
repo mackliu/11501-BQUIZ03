@@ -1,7 +1,7 @@
     <div class="half" style="vertical-align:top;">
       <h1>預告片介紹</h1>
       <!--
-        海報:210x230
+        海報:180x230
         下方按鈕區:420 x 130
 
       -->
@@ -22,8 +22,8 @@
             display:none;
           }
           .poster img{
-              width:180px;
-              height:210px;
+              width:100%;
+              max-height:210px;
 
           }
           .controls{
@@ -131,14 +131,24 @@
           break;
           case 2:
             //滑入滑出
-            $(now).slideUp(1000,()=>{
-              $(next).slideDown(1000)
-            })
+              $(now).animate({left:-180},1000,()=>{
+                  $(now).hide(0);
+                  $(now).css({left:0,top:0,width:180,heigth:230});
+                })
+
+              $(next).css({left:185,top:0,width:180,heigth:230})
+              $(next).show(0);
+              $(next).animate({left:0},1000)
           break;
           case 3:
             //縮放
-            $(now).hide(1000,()=>{
-              $(next).show(2000)
+            $(now).animate({left:90,top:115,width:0,height:0},1000,'swing',()=>{
+              $(now).hide();
+              $(now).css({left:0,top:0,width:180,height:230})
+
+              $(next).css({left:90,top:115,width:0,height:0})
+              $(next).show();
+              $(next).animate({left:0,top:0,width:180,height:230},1000,'swing')
             })
 
           break;
