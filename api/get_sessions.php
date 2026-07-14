@@ -51,9 +51,12 @@ if($date==$today && $hour>14){
 echo $start;
 if($start!=0 &&  $start < 5){
     for($i=$start;$i<=5;$i++){
+        $qt=$Order->q("select sum(qt) as 'sum' from orders where movie='{$movie['name']}' AND day='$date' AND session='{$sess[$i]}'")[0]['sum'];
+
         echo "<option value='{$sess[$i]}'>";
         echo $sess[$i];
-        echo " 剩餘座位 20";
+        echo " 剩餘座位 ";
+        echo 20-$qt;
         echo "</option>";
     }
 }else{

@@ -61,7 +61,8 @@ function checkout(){
     }
 
     $.post("./api/checkout.php",data,(res)=>{
-            console.log(res);
+            //console.log(res);
+            $("#Seats").html(res)
     })
 }
 </script>
