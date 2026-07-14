@@ -46,6 +46,9 @@ $(".chk").on("click",function(){
         case true:
             if(seats.length+1<=4){
                seats.push(num)
+
+               $(this).parent().removeClass('none');
+               $(this).parent().addClass('booked');
             }else{
                 alert("最多只能訂四張票") 
                 $(this).prop('checked',false)
@@ -55,6 +58,8 @@ $(".chk").on("click",function(){
             let index=seats.indexOf(num);
             //console.log(index)
             seats.splice(index,1)
+            $(this).parent().removeClass('booked');
+            $(this).parent().addClass('none');
         break;
     }
     //console.log(status)
